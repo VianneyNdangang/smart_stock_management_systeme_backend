@@ -1,0 +1,51 @@
+### Login
+POST http://127.0.0.1:8000/api/v1/auth/
+Content-Type: application/json
+
+{
+    "username": "Vianney12",
+    "password": "Password123!"
+}
+
+### Créer un utilisateur
+POST http://127.0.0.1:8000/api/v1/users/
+Content-Type: application/json
+
+{
+    "username": "vianney231",
+    "first_name": "Vianney",
+    "last_name": "Ndangang",
+    "email": "vianney231@example.com",
+    "password": "Password123!",
+    "role": "CATEGORY MANAGER",
+    "warehouse_id": "87e2e59c-5e75-4b0a-a633-8926afe1b859"
+}
+
+### Modifier un utilisateur
+PATCH  http://127.0.0.1:8000/api/v1/users/075bb3b0-dd5e-4796-aa19-487b691a17e4/
+Content-Type: application/json
+
+{
+    "warehouse_id": "15016b10-6efe-45ee-bda6-24dc21144608"
+}
+
+
+### Liste des utilisateurs
+get http://127.0.0.1:8000/api/v1/users/
+
+### Warehouse 1 — Douala
+POST http://127.0.0.1:8000/api/v1/warehouses/
+Content-Type: application/json
+
+{
+    "name": "Warehouse Douala",
+    "location": "Bonabéri",
+    "region": "CM-LT"
+}
+
+
+### Liste des magasins
+get http://127.0.0.1:8000/api/v1/warehouses/
+
+### Liste des groups
+get http://127.0.0.1:8000/api/v1/users/permissions-groups/
