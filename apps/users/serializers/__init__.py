@@ -6,7 +6,7 @@ from .user_write import (
 )
 from .user_summary import UserSummarySerializer
 from .auth import ChangePasswordSerializer, LoginSerializer
-from .user_permission import PermissionSummarySerializer, GroupSummarySerializer
+from .user_permission import PermissionSummarySerializer, GroupCreateSerializer, GroupSummarySerializer
 
 __all__ = [
     "UserReadSerializer",
@@ -17,5 +17,6 @@ __all__ = [
     "ChangePasswordSerializer",
     "PermissionSummarySerializer",
     "GroupSummarySerializer",
+    "GroupCreateSerializer",
     "LoginSerializer",
 ]

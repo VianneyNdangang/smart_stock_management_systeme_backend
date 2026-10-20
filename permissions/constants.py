@@ -45,6 +45,20 @@ class PermissionCodes:
     DELETE_ATTRIBUTES = "attributes.delete_attribute"
 
 
+    # Attribute values
+
+    VIEW_ATTRIBUTE_VALUES = "products.view_attributevalue"
+    CREATE_ATTRIBUTE_VALUES = "products.add_attributevalue"
+    UPDATE_ATTRIBUTE_VALUES = "products.change_attributevalue"
+
+
+    # Variants
+    
+    VIEW_VARIANTS = "products.view_variant"
+    CREATE_VARIANTS = "products.add_variant"
+    UPDATE_VARIANTS = "products.change_variant"
+    DELETE_VARIANTS = "products.delete_variant"
+
     # CATEGORIES
 
     VIEW_CATEGORIES = "categories.view_category"

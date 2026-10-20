@@ -6,7 +6,7 @@ from django.utils.text import slugify
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False )
     name = models.CharField( max_length=100 )
-    slug = models.SlugField( max_length=100, unique=True, editable=False)
+    slug = models.SlugField( max_length=255, unique=True, editable=False)
     description = models.TextField(blank=True)
     level = models.PositiveIntegerField(default=1, editable=False)
     parent = models.ForeignKey("self", on_delete=models.PROTECT, null=True, blank=True, related_name="children")

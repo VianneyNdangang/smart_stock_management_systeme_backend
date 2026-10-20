@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenViewBase
 from .models import User
 from django.contrib.auth.models import Group, Permission
-from .serializers import UserCreateSerializer, LoginSerializer, UserAdminUpdateSerializer, UserReadSerializer, UserUpdateSerializer, ChangePasswordSerializer, GroupSummarySerializer, PermissionSummarySerializer
+from .serializers import UserCreateSerializer, LoginSerializer, UserAdminUpdateSerializer, UserReadSerializer, UserUpdateSerializer, ChangePasswordSerializer, GroupCreateSerializer, PermissionSummarySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -79,7 +79,6 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
             "GET": PermissionCodes.VIEW_USERS,
             "PUT": PermissionCodes.UPDATE_USERS,
             "PATCH": PermissionCodes.UPDATE_USERS,
-            "DELETE": PermissionCodes.DELETE_USERS,
         }
 
         self.required_permission = permission_map.get(
@@ -144,7 +143,7 @@ class ChangePasswordView(APIView):
 
 class GroupListView(generics.ListCreateAPIView):
     queryset = Group.objects.all().order_by("name")
-    serializer_class = GroupSummarySerializer
+    serializer_class = GroupCreateSerializer
     pagination_class = None
     def get_permissions(self):
         if self.request.method == "GET":
@@ -155,8 +154,26 @@ class GroupListView(generics.ListCreateAPIView):
 
         return [HasPermission()]
 
+    
+class GroupDetailView(generics.RetrieveUpdateAPIView):
+    queryset = Group.objects.all()
+    lookup_field = "id"
+    def get_permissions(self):
+        permission_map = {
+            "GET": PermissionCodes.VIEW_GROUPS,
+            "PUT": PermissionCodes.UPDATE_GROUPS,
+            "PATCH": PermissionCodes.UPDATE_GROUPS,
+        }
+
+        self.required_permission = permission_map.get(
+            self.request.method
+        )
+
+        return [HasPermission()]
+    serializer_class = GroupCreateSerializer
+
 class PermissionListView(generics.ListAPIView):
-    queryset = Permission.objects.all().order_by("name")
+    queryset = Permission.objects.all().order_by("-id")
     serializer_class = PermissionSummarySerializer
     # permission_classes = [HasPermission]
     # required_permission = [PermissionCodes.VIEW_PERMISSIONS]

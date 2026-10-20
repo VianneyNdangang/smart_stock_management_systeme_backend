@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from apps.categories.models import Category
+# from apps.products.serializers import ProductReadSerializer
+from apps.products.models import CategoryProduct
 
 
 class CategorySummarySerializer(serializers.ModelSerializer):
@@ -32,3 +34,23 @@ class CategoryReadSerializer(serializers.ModelSerializer):
 
         read_only_fields = fields
 
+# class CategoryProductSerializer(serializers.ModelSerializer):
+#     product = ProductReadSerializer( read_only = True)
+#     class Meta:
+#         model = CategoryProduct
+#         fields = [
+#             "product"
+#         ]
+#         read_only_fields = fields
+
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            "id",
+            "slug",
+            "name",
+            "description",
+            "level"
+        ]
